@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Filament\Resources\SliderResource\Pages;
+namespace App\Filament\Resources\RatingResource\Pages;
 
-use App\Filament\Resources\SliderResource;
+use App\Filament\Resources\RatingResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListSliders extends ListRecords
+class ListRatings extends ListRecords
 {
     use ListRecords\Concerns\Translatable;
 
-    protected static string $resource = SliderResource::class;
-
+    protected static string $resource = RatingResource::class;
     protected function getActions(): array
     {
         return [

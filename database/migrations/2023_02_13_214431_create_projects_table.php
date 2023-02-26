@@ -13,12 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sliders', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->json('title')->nullable();
-            $table->json('description')->nullable();
-            $table->json('short_description')->nullable();
+            $table->json('title');
+            $table->json('title_2');
+
+            $table->json('description_title');
+            $table->json('description');
+
             $table->string('image');
+            $table->json('gallery');
+
             $table->timestamps();
         });
     }
@@ -30,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sliders');
+        Schema::dropIfExists('projects');
     }
 };

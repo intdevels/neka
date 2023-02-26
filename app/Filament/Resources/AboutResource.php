@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SliderResource\Pages;
-use App\Filament\Resources\SliderResource\RelationManagers;
-use App\Models\Slider;
+use App\Filament\Resources\AboutResource\Pages;
+use App\Filament\Resources\AboutResource\RelationManagers;
+use App\Models\About;
 use Filament\Forms;
-use Filament\Forms\Components\Card;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -15,25 +14,24 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class SliderResource extends Resource
+class AboutResource extends Resource
 {
     use Translatable;
 
-    protected static ?string $model = Slider::class;
+    protected static ?string $model = About::class;
 
-//    public static $translatableLocales = ['am','en'];
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Card::make()->schema([
-                    Forms\Components\TextInput::make('title')->maxLength(255),
-                    Forms\Components\Textarea::make('description')->maxLength(255),
-                    Forms\Components\Textarea::make('short_description')->maxLength(255),
-                    Forms\Components\FileUpload::make('image')->required(),
-                ])
+               Forms\Components\Card::make([
+                   Forms\Components\TextInput::make('title')
+                       ->required(),
+                   Forms\Components\Textarea::make('description'),
+                   Forms\Components\FileUpload::make('image')
+               ])
             ]);
     }
 
@@ -44,7 +42,10 @@ class SliderResource extends Resource
                 Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('short_description'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime(),
             ])
             ->filters([
                 //
@@ -53,7 +54,6 @@ class SliderResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
@@ -67,9 +67,14 @@ class SliderResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSliders::route('/'),
-            'create' => Pages\CreateSlider::route('/create'),
-            'edit' => Pages\EditSlider::route('/{record}/edit'),
+            'index' => Pages\ListAbouts::route('/'),
+           // 'create' => Pages\CreateAbout::route('/create'),
+            'edit' => Pages\EditAbout::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 }

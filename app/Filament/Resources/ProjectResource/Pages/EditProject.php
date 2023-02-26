@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Filament\Resources\SliderResource\Pages;
+namespace App\Filament\Resources\ProjectResource\Pages;
 
-use App\Filament\Resources\SliderResource;
+use App\Filament\Resources\ProjectResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditSlider extends EditRecord
+class EditProject extends EditRecord
 {
     use EditRecord\Concerns\Translatable;
 
-    protected static string $resource = SliderResource::class;
+    protected static string $resource = ProjectResource::class;
 
     protected function getActions(): array
     {

@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sliders', function (Blueprint $table) {
-            $table->id();
-            $table->json('title')->nullable();
-            $table->json('description')->nullable();
-            $table->json('short_description')->nullable();
-            $table->string('image');
-            $table->timestamps();
-        });
+//        Schema::create('socials', function (Blueprint $table) {
+//            $table->id();
+//            $table->string('image')->nullable();
+//            $table->string('svg')->nullable();
+//            $table->json('link');
+//            $table->timestamps();
+//        });
     }
 
     /**
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sliders');
+        Schema::dropIfExists('socials');
     }
 };

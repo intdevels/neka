@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Filament\Resources\SliderResource\Pages;
+namespace App\Filament\Resources\ProjectResource\Pages;
 
-use App\Filament\Resources\SliderResource;
+use App\Filament\Resources\ProjectResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListSliders extends ListRecords
+class ListProjects extends ListRecords
 {
     use ListRecords\Concerns\Translatable;
 
-    protected static string $resource = SliderResource::class;
+    protected static string $resource = ProjectResource::class;
 
     protected function getActions(): array
     {
