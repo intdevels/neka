@@ -21,7 +21,7 @@ class SliderResource extends Resource
 
     protected static ?string $model = Slider::class;
 
-//    public static $translatableLocales = ['am','en'];
+//    public static $translatableLocales = ['hy','en'];
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     public static function form(Form $form): Form

@@ -327,6 +327,7 @@ return [
             SubstituteBindings::class,
             DispatchServingFilamentEvent::class,
             MirrorConfigToSubpackages::class,
+            \App\Http\Middleware\SetFilamentLocale::class
         ],
     ],
 

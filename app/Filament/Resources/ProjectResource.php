@@ -32,9 +32,9 @@ class ProjectResource extends Resource
                   Forms\Components\TextInput::make('title_2')
                       ->required(),
 
-                  Forms\Components\TextInput::make('description')
-                      ->required(),
                   Forms\Components\TextInput::make('description_title')
+                      ->required(),
+                  Forms\Components\Textarea::make('description')
                       ->required(),
 
                   Forms\Components\FileUpload::make('image')
@@ -55,7 +55,7 @@ class ProjectResource extends Resource
                 Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('title_2'),
-                Tables\Columns\TextColumn::make('description_title'),
+                Tables\Columns\Textarea::make('description_title'),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),

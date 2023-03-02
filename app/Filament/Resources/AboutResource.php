@@ -22,15 +22,23 @@ class AboutResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    public static function getPluralModelLabel(): string
+    {
+        return __('admin.about');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                Forms\Components\Card::make([
                    Forms\Components\TextInput::make('title')
-                       ->required(),
-                   Forms\Components\Textarea::make('description'),
+                       ->required()
+                       ->label(__('admin.title')),
+                   Forms\Components\Textarea::make('description')
+                       ->label(__('admin.description')),
                    Forms\Components\FileUpload::make('image')
+                       ->label(__('admin.image'))
                ])
             ]);
     }
@@ -39,13 +47,15 @@ class AboutResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\ImageColumn::make('image')->label(__('admin.image')),
+                Tables\Columns\TextColumn::make('title')->label(__('admin.title')),
+                Tables\Columns\TextColumn::make('description')->label(__('admin.description')),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
+                    ->dateTime()
+                    ->label(__('admin.created_at')),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                    ->dateTime()
+                    ->label(__('admin.updated_at')),
             ])
             ->filters([
                 //
