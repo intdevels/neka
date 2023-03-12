@@ -1,0 +1,45 @@
+// Global SCSS-files imports
+@import 'fonts';
+@import 'vars';
+@import 'reset';
+@import 'global';
+@import 'libs/aos';
+// @import 'libs/liMarquee';
+
+// Sections or Pages SCSS-files imports
+// @import './header';
+@import 'footer';
+@import "home";
+@import "about";
+@import "statistic";
+@import "projects";
+@import "clients";
+@import "infos";
+@import "modal";
+
+
+// Libs
+ @import 'libs/swiper';
+
+.social {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+
+  &-item {
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+    a{
+      display: block;
+    }
+  }
+
+  &-link {
+  }
+}
+
+body,html{
+  width: 100vw;
+  overflow-x: hidden;
+}
