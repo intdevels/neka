@@ -34,11 +34,9 @@ class AboutResource extends Resource
                Forms\Components\Card::make([
                    Forms\Components\TextInput::make('title')
                        ->required()
-                       ->label(__('admin.title')),
-                   Forms\Components\Textarea::make('description')
-                       ->label(__('admin.description')),
+                       ->helperText('<small>&lt;b&gt; Your Text &lt;/b&gt;</small>'),
+                   Forms\Components\Textarea::make('description'),
                    Forms\Components\FileUpload::make('image')
-                       ->label(__('admin.image'))
                ])
             ]);
     }

@@ -13,6 +13,11 @@ return [
     'Contact_Us' => 'Contact Us',
     'phone' => 'Phone',
     'email' => 'E-Mail',
-    'all_rights' => '© 2023 Neka. All Rights Reserved.'
+    'address' => '13/11, Kochinyan str., Yerevan, 0089, Armenia',
+    'all_rights' => '2023 Neka. All Rights Reserved.',
+    
+    'view_next' => 'View Next',
+    'view_previous' => 'View Previous',
+    'see_more' => 'See more'
 
 ];

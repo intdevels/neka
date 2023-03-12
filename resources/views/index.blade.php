@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang={{ app()->getLocale() }}>
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="{{ asset('/styles/css/style.min.css') }}">
     <meta name="description" content="description">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon.ico') }}">
+    
+    <script>
+        let password = prompt("Введите пароль:");
+
+        if (password !== "8888") {
+          alert("Неверный пароль! Доступ заблокирован.");
+          window.location.href = "about:blank"; // перенаправление на пустую страницу
+        }
+    </script>
 </head>
 
 <body class="main__body">
@@ -32,7 +41,7 @@
                     </div>
                     <ul class="social">
                         <li class="social-item">
-                            <a class="social-link" href="#" target="_blank" aria-label="icon">
+                            <a class="social-link" href="https://www.facebook.com/nekaproject?mibextid=LQQJ4d" target="_blank" aria-label="icon">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -42,7 +51,7 @@
                             </a>
                         </li>
                         <li class="social-item">
-                            <a class="social-link" href="#" target="_blank" aria-label="icon">
+                            <a class="social-link" href="https://instagram.com/nekaproject?igshid=YmMyMTA2M2Y=" target="_blank" aria-label="icon">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -160,7 +169,7 @@
                     @foreach($ratings as $rating)
                         <div class="statistic-item">
                             <div class="statistic-header">
-                                <div class="statistic-number h1 bold">{{ $rating->score }}</div>
+                                <div class="statistic-number h1 bold" data-count="{{$rating->score}}">{{ $rating->score }}</div>
                                 <div class="statistic-title bold h4">{{ $rating->title }}</div>
                             </div>
                             <p class="p statistic-text">
@@ -219,12 +228,12 @@
                         @endforeach
                         <div class="swiper-slide projects-swiper__item"></div>
                     </div>
-                    <div class="swiper-button-arrow swiper-button-next" data-text="View Next"></div>
-                    <div class="swiper-button-arrow swiper-button-prev" data-text="View Previous"></div>
+                    <div class="swiper-button-arrow swiper-button-next" data-text="@lang('landing.view_next')"></div>
+                    <div class="swiper-button-arrow swiper-button-prev" data-text="@lang('landing.view_previous')"></div>
                 </div>
             </div>
             <div class="projects-footer">
-                <button class="btn btn-projects">See more</button>
+                <button class="btn btn-projects">@lang('landing.see_more')</button>
             </div>
         </div>
     </section>
@@ -235,8 +244,7 @@
                 <h1 class="h1 clients-title"> @lang('landing.out_partners') @endlang</h1>
             </div>
             <div class="clients-inner">
-                <div class="swiper clients-list">
-                    <div class="swiper-wrapper">
+                <div class="clients-list clients-list__first">
                         @foreach($partners as $partner)
                             <div class="swiper-slide">
                                 <div class="clients-item">
@@ -247,8 +255,6 @@
                                 </div>
                             </div>
                         @endforeach
-                    </div>
-                    <div class="swiper-pagination"></div>
                 </div>
             </div>
         </div>
@@ -335,7 +341,7 @@
 </main>
 
 
-@foreach($projects as $project)
+@foreach($projects as $key => $project)
     <!-- Modal -->
     <div class="modal__wrapper" id="project-{{ $project->id }}">
         <div class="modal__content">
@@ -346,7 +352,7 @@
                 </svg>
             </div>
             <div class="modal__body">
-                <div class="swiper gallery-top swiper-container slider-modal modal-projects__big mySwiper2">
+                <div class="swiper gallery-top gallery-top-{{ $key + 1 }} swiper-container slider-modal modal-projects__big mySwiper2">
                     <div class="swiper-wrapper">
                         @foreach($project->gallery as $gallery)
                             <div class="swiper-slide">
@@ -358,7 +364,7 @@
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-                <div class="swiper gallery-thumbs swiper-container slider-modal modal-projects__small mySwiper1">
+                <div class="swiper gallery-thumbs-{{ $key + 1 }} gallery-thumbs swiper-container slider-modal modal-projects__small mySwiper1">
                     <div class="swiper-wrapper">
                         @foreach($project->gallery as $gallery)
                             <div class="swiper-slide">
@@ -383,7 +389,8 @@
                     <div class="footer-contacts__list">
                         <div class="footer-contacts__item footer-contacts__address">
                             <a href="#" class="footer-contacts__link">
-                                0089 Yerevan, Armenia, 4/5 Arin Berd lane 5, Erebuni</a>
+                                @lang('landing.address')   
+                            </a>
                         </div>
                         <div class="footer-contacts__item">
                             @lang('landing.phone'): <a href="#" class="footer-contacts__link">+374 11-711-411</a>
@@ -395,7 +402,7 @@
                     <div class="footer-mobile__title p2">Follow Us</div>
                     <ul class="social">
                         <li class="social-item">
-                            <a class="social-link" href="#" target="_blank" aria-label="icon">
+                            <a class="social-link" href="https://www.facebook.com/nekaproject?mibextid=LQQJ4d" target="_blank" aria-label="icon">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -405,7 +412,7 @@
                             </a>
                         </li>
                         <li class="social-item">
-                            <a class="social-link" href="#" target="_blank" aria-label="icon">
+                            <a class="social-link" href="https://instagram.com/nekaproject?igshid=YmMyMTA2M2Y=" target="_blank" aria-label="icon">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -429,12 +436,20 @@
             </nav>
         </div>
     </div>
-    <div class="footer-copyright">
-        <p class="p3"> @lang('landing.all_rights')</p>
-                        <span class="footer-inner__copyright-text"> Website by </span>
-                        <a href="https://intdevels.com" target="_blank" class="footer-inner__copyright-link">
-                           IntDevels Team
+     <div class="footer-copyright">
+        <div class="wrapper footer-wrapper">
+<div class="footer-copyright__inner">
+    <p class="p3">© @lang('landing.all_rights')</p>
+    <span>
+            <span class="footer-inner__copyright-text"> Website by </span>
+                        <a href="https://htmlacademy.ru/intensive/adaptive" class="footer-inner__copyright-link">
+                            IntDevels Team
                         </a>
+        </span>
+</div>
+        </div>
+
+
     </div>
 </footer>
 

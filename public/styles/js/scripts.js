@@ -22,39 +22,278 @@
 !function(t){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define([],t);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).Parallax=t()}}(function(){return function t(e,i,n){function o(r,a){if(!i[r]){if(!e[r]){var l="function"==typeof require&&require;if(!a&&l)return l(r,!0);if(s)return s(r,!0);var h=new Error("Cannot find module '"+r+"'");throw h.code="MODULE_NOT_FOUND",h}var u=i[r]={exports:{}};e[r][0].call(u.exports,function(t){var i=e[r][1][t];return o(i||t)},u,u.exports,t,e,i,n)}return i[r].exports}for(var s="function"==typeof require&&require,r=0;r<n.length;r++)o(n[r]);return o}({1:[function(t,e,i){"use strict";function n(t){if(null===t||void 0===t)throw new TypeError("Object.assign cannot be called with null or undefined");return Object(t)}var o=Object.getOwnPropertySymbols,s=Object.prototype.hasOwnProperty,r=Object.prototype.propertyIsEnumerable;e.exports=function(){try{if(!Object.assign)return!1;var t=new String("abc");if(t[5]="de","5"===Object.getOwnPropertyNames(t)[0])return!1;for(var e={},i=0;i<10;i++)e["_"+String.fromCharCode(i)]=i;if("0123456789"!==Object.getOwnPropertyNames(e).map(function(t){return e[t]}).join(""))return!1;var n={};return"abcdefghijklmnopqrst".split("").forEach(function(t){n[t]=t}),"abcdefghijklmnopqrst"===Object.keys(Object.assign({},n)).join("")}catch(t){return!1}}()?Object.assign:function(t,e){for(var i,a,l=n(t),h=1;h<arguments.length;h++){i=Object(arguments[h]);for(var u in i)s.call(i,u)&&(l[u]=i[u]);if(o){a=o(i);for(var c=0;c<a.length;c++)r.call(i,a[c])&&(l[a[c]]=i[a[c]])}}return l}},{}],2:[function(t,e,i){(function(t){(function(){var i,n,o,s,r,a;"undefined"!=typeof performance&&null!==performance&&performance.now?e.exports=function(){return performance.now()}:void 0!==t&&null!==t&&t.hrtime?(e.exports=function(){return(i()-r)/1e6},n=t.hrtime,s=(i=function(){var t;return 1e9*(t=n())[0]+t[1]})(),a=1e9*t.uptime(),r=s-a):Date.now?(e.exports=function(){return Date.now()-o},o=Date.now()):(e.exports=function(){return(new Date).getTime()-o},o=(new Date).getTime())}).call(this)}).call(this,t("_process"))},{_process:3}],3:[function(t,e,i){function n(){throw new Error("setTimeout has not been defined")}function o(){throw new Error("clearTimeout has not been defined")}function s(t){if(c===setTimeout)return setTimeout(t,0);if((c===n||!c)&&setTimeout)return c=setTimeout,setTimeout(t,0);try{return c(t,0)}catch(e){try{return c.call(null,t,0)}catch(e){return c.call(this,t,0)}}}function r(t){if(d===clearTimeout)return clearTimeout(t);if((d===o||!d)&&clearTimeout)return d=clearTimeout,clearTimeout(t);try{return d(t)}catch(e){try{return d.call(null,t)}catch(e){return d.call(this,t)}}}function a(){v&&p&&(v=!1,p.length?f=p.concat(f):y=-1,f.length&&l())}function l(){if(!v){var t=s(a);v=!0;for(var e=f.length;e;){for(p=f,f=[];++y<e;)p&&p[y].run();y=-1,e=f.length}p=null,v=!1,r(t)}}function h(t,e){this.fun=t,this.array=e}function u(){}var c,d,m=e.exports={};!function(){try{c="function"==typeof setTimeout?setTimeout:n}catch(t){c=n}try{d="function"==typeof clearTimeout?clearTimeout:o}catch(t){d=o}}();var p,f=[],v=!1,y=-1;m.nextTick=function(t){var e=new Array(arguments.length-1);if(arguments.length>1)for(var i=1;i<arguments.length;i++)e[i-1]=arguments[i];f.push(new h(t,e)),1!==f.length||v||s(l)},h.prototype.run=function(){this.fun.apply(null,this.array)},m.title="browser",m.browser=!0,m.env={},m.argv=[],m.version="",m.versions={},m.on=u,m.addListener=u,m.once=u,m.off=u,m.removeListener=u,m.removeAllListeners=u,m.emit=u,m.prependListener=u,m.prependOnceListener=u,m.listeners=function(t){return[]},m.binding=function(t){throw new Error("process.binding is not supported")},m.cwd=function(){return"/"},m.chdir=function(t){throw new Error("process.chdir is not supported")},m.umask=function(){return 0}},{}],4:[function(t,e,i){(function(i){for(var n=t("performance-now"),o="undefined"==typeof window?i:window,s=["moz","webkit"],r="AnimationFrame",a=o["request"+r],l=o["cancel"+r]||o["cancelRequest"+r],h=0;!a&&h<s.length;h++)a=o[s[h]+"Request"+r],l=o[s[h]+"Cancel"+r]||o[s[h]+"CancelRequest"+r];if(!a||!l){var u=0,c=0,d=[];a=function(t){if(0===d.length){var e=n(),i=Math.max(0,1e3/60-(e-u));u=i+e,setTimeout(function(){var t=d.slice(0);d.length=0;for(var e=0;e<t.length;e++)if(!t[e].cancelled)try{t[e].callback(u)}catch(t){setTimeout(function(){throw t},0)}},Math.round(i))}return d.push({handle:++c,callback:t,cancelled:!1}),c},l=function(t){for(var e=0;e<d.length;e++)d[e].handle===t&&(d[e].cancelled=!0)}}e.exports=function(t){return a.call(o,t)},e.exports.cancel=function(){l.apply(o,arguments)},e.exports.polyfill=function(){o.requestAnimationFrame=a,o.cancelAnimationFrame=l}}).call(this,"undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{"performance-now":2}],5:[function(t,e,i){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}var o=function(){function t(t,e){for(var i=0;i<e.length;i++){var n=e[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,i,n){return i&&t(e.prototype,i),n&&t(e,n),e}}(),s=t("raf"),r=t("object-assign"),a={propertyCache:{},vendors:[null,["-webkit-","webkit"],["-moz-","Moz"],["-o-","O"],["-ms-","ms"]],clamp:function(t,e,i){return e<i?t<e?e:t>i?i:t:t<i?i:t>e?e:t},data:function(t,e){return a.deserialize(t.getAttribute("data-"+e))},deserialize:function(t){return"true"===t||"false"!==t&&("null"===t?null:!isNaN(parseFloat(t))&&isFinite(t)?parseFloat(t):t)},camelCase:function(t){return t.replace(/-+(.)?/g,function(t,e){return e?e.toUpperCase():""})},accelerate:function(t){a.css(t,"transform","translate3d(0,0,0) rotate(0.0001deg)"),a.css(t,"transform-style","preserve-3d"),a.css(t,"backface-visibility","hidden")},transformSupport:function(t){for(var e=document.createElement("div"),i=!1,n=null,o=!1,s=null,r=null,l=0,h=a.vendors.length;l<h;l++)if(null!==a.vendors[l]?(s=a.vendors[l][0]+"transform",r=a.vendors[l][1]+"Transform"):(s="transform",r="transform"),void 0!==e.style[r]){i=!0;break}switch(t){case"2D":o=i;break;case"3D":if(i){var u=document.body||document.createElement("body"),c=document.documentElement,d=c.style.overflow,m=!1;document.body||(m=!0,c.style.overflow="hidden",c.appendChild(u),u.style.overflow="hidden",u.style.background=""),u.appendChild(e),e.style[r]="translate3d(1px,1px,1px)",o=void 0!==(n=window.getComputedStyle(e).getPropertyValue(s))&&n.length>0&&"none"!==n,c.style.overflow=d,u.removeChild(e),m&&(u.removeAttribute("style"),u.parentNode.removeChild(u))}}return o},css:function(t,e,i){var n=a.propertyCache[e];if(!n)for(var o=0,s=a.vendors.length;o<s;o++)if(n=null!==a.vendors[o]?a.camelCase(a.vendors[o][1]+"-"+e):e,void 0!==t.style[n]){a.propertyCache[e]=n;break}t.style[n]=i}},l={relativeInput:!1,clipRelativeInput:!1,inputElement:null,hoverOnly:!1,calibrationThreshold:100,calibrationDelay:500,supportDelay:500,calibrateX:!1,calibrateY:!0,invertX:!0,invertY:!0,limitX:!1,limitY:!1,scalarX:10,scalarY:10,frictionX:.1,frictionY:.1,originX:.5,originY:.5,pointerEvents:!1,precision:1,onReady:null,selector:null},h=function(){function t(e,i){n(this,t),this.element=e;var o={calibrateX:a.data(this.element,"calibrate-x"),calibrateY:a.data(this.element,"calibrate-y"),invertX:a.data(this.element,"invert-x"),invertY:a.data(this.element,"invert-y"),limitX:a.data(this.element,"limit-x"),limitY:a.data(this.element,"limit-y"),scalarX:a.data(this.element,"scalar-x"),scalarY:a.data(this.element,"scalar-y"),frictionX:a.data(this.element,"friction-x"),frictionY:a.data(this.element,"friction-y"),originX:a.data(this.element,"origin-x"),originY:a.data(this.element,"origin-y"),pointerEvents:a.data(this.element,"pointer-events"),precision:a.data(this.element,"precision"),relativeInput:a.data(this.element,"relative-input"),clipRelativeInput:a.data(this.element,"clip-relative-input"),hoverOnly:a.data(this.element,"hover-only"),inputElement:document.querySelector(a.data(this.element,"input-element")),selector:a.data(this.element,"selector")};for(var s in o)null===o[s]&&delete o[s];r(this,l,o,i),this.inputElement||(this.inputElement=this.element),this.calibrationTimer=null,this.calibrationFlag=!0,this.enabled=!1,this.depthsX=[],this.depthsY=[],this.raf=null,this.bounds=null,this.elementPositionX=0,this.elementPositionY=0,this.elementWidth=0,this.elementHeight=0,this.elementCenterX=0,this.elementCenterY=0,this.elementRangeX=0,this.elementRangeY=0,this.calibrationX=0,this.calibrationY=0,this.inputX=0,this.inputY=0,this.motionX=0,this.motionY=0,this.velocityX=0,this.velocityY=0,this.onMouseMove=this.onMouseMove.bind(this),this.onDeviceOrientation=this.onDeviceOrientation.bind(this),this.onDeviceMotion=this.onDeviceMotion.bind(this),this.onOrientationTimer=this.onOrientationTimer.bind(this),this.onMotionTimer=this.onMotionTimer.bind(this),this.onCalibrationTimer=this.onCalibrationTimer.bind(this),this.onAnimationFrame=this.onAnimationFrame.bind(this),this.onWindowResize=this.onWindowResize.bind(this),this.windowWidth=null,this.windowHeight=null,this.windowCenterX=null,this.windowCenterY=null,this.windowRadiusX=null,this.windowRadiusY=null,this.portrait=!1,this.desktop=!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|mobi|tablet|opera mini|nexus 7)/i),this.motionSupport=!!window.DeviceMotionEvent&&!this.desktop,this.orientationSupport=!!window.DeviceOrientationEvent&&!this.desktop,this.orientationStatus=0,this.motionStatus=0,this.initialise()}return o(t,[{key:"initialise",value:function(){void 0===this.transform2DSupport&&(this.transform2DSupport=a.transformSupport("2D"),this.transform3DSupport=a.transformSupport("3D")),this.transform3DSupport&&a.accelerate(this.element),"static"===window.getComputedStyle(this.element).getPropertyValue("position")&&(this.element.style.position="relative"),this.pointerEvents||(this.element.style.pointerEvents="none"),this.updateLayers(),this.updateDimensions(),this.enable(),this.queueCalibration(this.calibrationDelay)}},{key:"doReadyCallback",value:function(){this.onReady&&this.onReady()}},{key:"updateLayers",value:function(){this.selector?this.layers=this.element.querySelectorAll(this.selector):this.layers=this.element.children,this.layers.length||console.warn("ParallaxJS: Your scene does not have any layers."),this.depthsX=[],this.depthsY=[];for(var t=0;t<this.layers.length;t++){var e=this.layers[t];this.transform3DSupport&&a.accelerate(e),e.style.position=t?"absolute":"relative",e.style.display="block",e.style.left=0,e.style.top=0;var i=a.data(e,"depth")||0;this.depthsX.push(a.data(e,"depth-x")||i),this.depthsY.push(a.data(e,"depth-y")||i)}}},{key:"updateDimensions",value:function(){this.windowWidth=window.innerWidth,this.windowHeight=window.innerHeight,this.windowCenterX=this.windowWidth*this.originX,this.windowCenterY=this.windowHeight*this.originY,this.windowRadiusX=Math.max(this.windowCenterX,this.windowWidth-this.windowCenterX),this.windowRadiusY=Math.max(this.windowCenterY,this.windowHeight-this.windowCenterY)}},{key:"updateBounds",value:function(){this.bounds=this.inputElement.getBoundingClientRect(),this.elementPositionX=this.bounds.left,this.elementPositionY=this.bounds.top,this.elementWidth=this.bounds.width,this.elementHeight=this.bounds.height,this.elementCenterX=this.elementWidth*this.originX,this.elementCenterY=this.elementHeight*this.originY,this.elementRangeX=Math.max(this.elementCenterX,this.elementWidth-this.elementCenterX),this.elementRangeY=Math.max(this.elementCenterY,this.elementHeight-this.elementCenterY)}},{key:"queueCalibration",value:function(t){clearTimeout(this.calibrationTimer),this.calibrationTimer=setTimeout(this.onCalibrationTimer,t)}},{key:"enable",value:function(){this.enabled||(this.enabled=!0,this.orientationSupport?(this.portrait=!1,window.addEventListener("deviceorientation",this.onDeviceOrientation),this.detectionTimer=setTimeout(this.onOrientationTimer,this.supportDelay)):this.motionSupport?(this.portrait=!1,window.addEventListener("devicemotion",this.onDeviceMotion),this.detectionTimer=setTimeout(this.onMotionTimer,this.supportDelay)):(this.calibrationX=0,this.calibrationY=0,this.portrait=!1,window.addEventListener("mousemove",this.onMouseMove),this.doReadyCallback()),window.addEventListener("resize",this.onWindowResize),this.raf=s(this.onAnimationFrame))}},{key:"disable",value:function(){this.enabled&&(this.enabled=!1,this.orientationSupport?window.removeEventListener("deviceorientation",this.onDeviceOrientation):this.motionSupport?window.removeEventListener("devicemotion",this.onDeviceMotion):window.removeEventListener("mousemove",this.onMouseMove),window.removeEventListener("resize",this.onWindowResize),s.cancel(this.raf))}},{key:"calibrate",value:function(t,e){this.calibrateX=void 0===t?this.calibrateX:t,this.calibrateY=void 0===e?this.calibrateY:e}},{key:"invert",value:function(t,e){this.invertX=void 0===t?this.invertX:t,this.invertY=void 0===e?this.invertY:e}},{key:"friction",value:function(t,e){this.frictionX=void 0===t?this.frictionX:t,this.frictionY=void 0===e?this.frictionY:e}},{key:"scalar",value:function(t,e){this.scalarX=void 0===t?this.scalarX:t,this.scalarY=void 0===e?this.scalarY:e}},{key:"limit",value:function(t,e){this.limitX=void 0===t?this.limitX:t,this.limitY=void 0===e?this.limitY:e}},{key:"origin",value:function(t,e){this.originX=void 0===t?this.originX:t,this.originY=void 0===e?this.originY:e}},{key:"setInputElement",value:function(t){this.inputElement=t,this.updateDimensions()}},{key:"setPosition",value:function(t,e,i){e=e.toFixed(this.precision)+"px",i=i.toFixed(this.precision)+"px",this.transform3DSupport?a.css(t,"transform","translate3d("+e+","+i+",0)"):this.transform2DSupport?a.css(t,"transform","translate("+e+","+i+")"):(t.style.left=e,t.style.top=i)}},{key:"onOrientationTimer",value:function(){this.orientationSupport&&0===this.orientationStatus?(this.disable(),this.orientationSupport=!1,this.enable()):this.doReadyCallback()}},{key:"onMotionTimer",value:function(){this.motionSupport&&0===this.motionStatus?(this.disable(),this.motionSupport=!1,this.enable()):this.doReadyCallback()}},{key:"onCalibrationTimer",value:function(){this.calibrationFlag=!0}},{key:"onWindowResize",value:function(){this.updateDimensions()}},{key:"onAnimationFrame",value:function(){this.updateBounds();var t=this.inputX-this.calibrationX,e=this.inputY-this.calibrationY;(Math.abs(t)>this.calibrationThreshold||Math.abs(e)>this.calibrationThreshold)&&this.queueCalibration(0),this.portrait?(this.motionX=this.calibrateX?e:this.inputY,this.motionY=this.calibrateY?t:this.inputX):(this.motionX=this.calibrateX?t:this.inputX,this.motionY=this.calibrateY?e:this.inputY),this.motionX*=this.elementWidth*(this.scalarX/100),this.motionY*=this.elementHeight*(this.scalarY/100),isNaN(parseFloat(this.limitX))||(this.motionX=a.clamp(this.motionX,-this.limitX,this.limitX)),isNaN(parseFloat(this.limitY))||(this.motionY=a.clamp(this.motionY,-this.limitY,this.limitY)),this.velocityX+=(this.motionX-this.velocityX)*this.frictionX,this.velocityY+=(this.motionY-this.velocityY)*this.frictionY;for(var i=0;i<this.layers.length;i++){var n=this.layers[i],o=this.depthsX[i],r=this.depthsY[i],l=this.velocityX*(o*(this.invertX?-1:1)),h=this.velocityY*(r*(this.invertY?-1:1));this.setPosition(n,l,h)}this.raf=s(this.onAnimationFrame)}},{key:"rotate",value:function(t,e){var i=(t||0)/30,n=(e||0)/30,o=this.windowHeight>this.windowWidth;this.portrait!==o&&(this.portrait=o,this.calibrationFlag=!0),this.calibrationFlag&&(this.calibrationFlag=!1,this.calibrationX=i,this.calibrationY=n),this.inputX=i,this.inputY=n}},{key:"onDeviceOrientation",value:function(t){var e=t.beta,i=t.gamma;null!==e&&null!==i&&(this.orientationStatus=1,this.rotate(e,i))}},{key:"onDeviceMotion",value:function(t){var e=t.rotationRate.beta,i=t.rotationRate.gamma;null!==e&&null!==i&&(this.motionStatus=1,this.rotate(e,i))}},{key:"onMouseMove",value:function(t){var e=t.clientX,i=t.clientY;if(this.hoverOnly&&(e<this.elementPositionX||e>this.elementPositionX+this.elementWidth||i<this.elementPositionY||i>this.elementPositionY+this.elementHeight))return this.inputX=0,void(this.inputY=0);this.relativeInput?(this.clipRelativeInput&&(e=Math.max(e,this.elementPositionX),e=Math.min(e,this.elementPositionX+this.elementWidth),i=Math.max(i,this.elementPositionY),i=Math.min(i,this.elementPositionY+this.elementHeight)),this.elementRangeX&&this.elementRangeY&&(this.inputX=(e-this.elementPositionX-this.elementCenterX)/this.elementRangeX,this.inputY=(i-this.elementPositionY-this.elementCenterY)/this.elementRangeY)):this.windowRadiusX&&this.windowRadiusY&&(this.inputX=(e-this.windowCenterX)/this.windowRadiusX,this.inputY=(i-this.windowCenterY)/this.windowRadiusY)}},{key:"destroy",value:function(){this.disable(),clearTimeout(this.calibrationTimer),clearTimeout(this.detectionTimer),this.element.removeAttribute("style");for(var t=0;t<this.layers.length;t++)this.layers[t].removeAttribute("style");delete this.element,delete this.layers}},{key:"version",value:function(){return"3.1.0"}}]),t}();e.exports=h},{"object-assign":1,raf:4}]},{},[5])(5)});
 //# sourceMappingURL=parallax.min.js.map
 
+/**
+ * Image Slider
+ *
+ * @category    jQuery Plugin
+ * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @copyright   2014 Daiki Sato
+ * @author      Daiki Sato <sato.dik@gmail.com>
+ * @link        http://orememo-v2.tumblr.com/
+ * @version     1.1.0
+ * @since       2014.05.16
+ */
 
-AOS.init({
-    once: true,
-    duration: 800,
-    // disable: 'mobile'
-});
-let show = false
+;(function($, window, document, undefined) {
+
+	var pluginName = 'imageslider',
+			defaults = {
+				slideItems: '.is-item',
+				slideContainer: '.is-container',
+				slideDistance: 1,
+				slideDuration: 1,
+				slideEasing: 'linear',
+				resizable: false,
+				reverse: false,
+				pause: false
+			};
+
+	function Plugin(element, options) {
+		var self = this;
+
+		self.element = element;
+		self.settings = $.extend({}, defaults, options);
+		self._defaults = defaults;
+		self._name = pluginName;
+
+		$(window).on('load', function() { self.init(); });
+		// this.init();
+	}
+
+	Plugin.prototype.init = function() {
+		var self = this;
+
+		self.$element = $(self.element);
+		self.$slideContainer = self.$element.find(self.settings.slideContainer);
+		self.$slideItems = self.$element.find(self.settings.slideItems);
+		self.elementW = self.$element.width();
+		self.slideContainerW = calcContainerSize(self.$slideContainer, self.$slideItems);
+		self.slideItemsLength = self.$slideItems.length;
+
+		self.$slideContainer.width(self.slideContainerW);
+		self.$element.css('overflow', 'hidden');
+
+		if(self.settings.resizable) {
+			$(window).on('resize', function(){ self.resizeContainer(); });
+		}
+		if(self.settings.pause) {
+			self.$slideContainer.hover(
+				function() { self.stopSlide(); },
+				function() { self.startSlide(); }
+			);
+		}
+
+		self.resizeContainer();
+		// self.startSlide();
+	}
+	Plugin.prototype.startSlide = function() {
+		var self = this,
+				$slideItemFirst = self.$slideContainer.find(self.settings.slideItems).eq(0),
+				$slideItemLast = self.$slideContainer.find(self.settings.slideItems).eq(self.slideItemsLength - 1),
+				slideItemFirstW = $slideItemFirst.width(),
+				slideItemLastW = $slideItemLast.width();
+
+		if($slideItemFirst.is(':animated')) return false;
+
+		if(!self.settings.reverse) {
+			// 右->左にスライドする
+			$slideItemFirst.animate({
+				marginLeft: parseInt($slideItemFirst.css('margin-left'), 10) - self.settings.slideDistance
+			}, self.settings.slideDuration, self.settings.slideEasing, function() {
+				if(Math.abs(parseInt($slideItemFirst.css('margin-left'), 10)) > slideItemFirstW) {
+					$slideItemFirst.appendTo(self.$slideContainer).css('margin-left', 0);
+				}
+				self.startSlide();
+			});
+		} else {
+			// 左->右にスライドする
+			if(parseInt($slideItemFirst.css('margin-left'), 10) >= 0) {
+				$slideItemLast.prependTo(self.$slideContainer).css('margin-left', -slideItemLastW);
+				self.startSlide();
+				return false;
+			}
+
+			$slideItemFirst.animate({
+				marginLeft: parseInt($slideItemFirst.css('margin-left'), 10) + self.settings.slideDistance
+			}, self.settings.slideDuration, self.settings.slideEasing, function() {
+				self.startSlide();
+			});
+		}
+	}
+	Plugin.prototype.stopSlide = function() {
+		var self = this;
+
+		self.$slideItems.stop();
+	}
+	Plugin.prototype.resizeContainer = function() {
+		var self = this,
+				elementW = self.$element.width(),
+				itemsW = self.slideContainerW;
+
+		// self.$slideContainerの横幅がself.$elementの横幅より小さい時、スライドする要素をコピー
+		// if(elementW < self.slideContainerW) return false;
+
+		// スライドを一旦ストップ
+		self.stopSlide();
+
+		// self.$elementの横幅を超えるまでスライドする要素をコピーする
+		adjustItemsLength(self.$slideContainer, self.$slideItems, elementW, itemsW);
+
+		// 各種要素更新
+		self.$slideItems = self.$element.find(self.settings.slideItems);
+		self.slideContainerW = calcContainerSize(self.$slideContainer, self.$slideItems);
+		self.elementW = elementW;
+		self.$slideContainer.width(self.slideContainerW);
+		self.slideItemsLength = self.$slideItems.length;
+
+		// スライドを再スタートする
+		self.startSlide();
+	}
+
+	function adjustItemsLength($container, $items, elementW, itemsW) {
+		$items.each(function() {
+			if(itemsW > elementW * 2) return false;
+
+			var $clone = $(this).clone().css('margin-left', 0);
+
+			$clone.appendTo($container);
+			itemsW += $clone.width();
+		});
+	} // end of adjustItemsLength
+
+	// 親要素のサイズを設定
+	function calcContainerSize($container, $items) {
+		var containerW = $container.width(),
+				resultW = 0;
+
+		$items.each(function() {
+			resultW += $(this).width();
+		});
+
+		return resultW;
+	} // end of calcContainerSize()
+
+	$.fn[pluginName] = function(options) {
+		this.each(function() {
+			if(!$.data(this, 'plugin_' + pluginName)) {
+				$.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+			}
+		});
+
+		return this;
+	}
+
+})(jQuery, window, document, undefined);
+function animationInit() {
+  AOS.init({
+    duration: 800, // установить длительность анимации
+  });
+}
+animationInit();
+
+let show = false;
 $(window).scroll(function () {
-    // выбираем нужный элемент
-    var section = $('.statistic');
-    // проверяем, видим ли элемент на странице
-    if (section.visible(true) && !show) {
-        show = true;
-        // выполняем нужные действия, когда элемент становится видимым
-        $('.statistic-number').each(function () {
-            $(this).prop('Counter', 0).animate({
-                Counter: $(this).text()
-            }, {
-                duration: 4000,
-                easing: 'swing',
-                step: function (now) {
-                    $(this).text(Math.ceil(now));
-                }
-            });
-        });
-
+  // выбираем нужный элемент
+  var section = $(".statistic");
+  // проверяем, видим ли элемент на странице
+  if ($(".statistic").hasClass("aos-animate") && !show) {
+    show = true;
+    // выполняем нужные действия, когда элемент становится видимым
+    $(".statistic-number").each(function () {
+      $(this)
+        .prop("Counter", 0)
+        .animate(
+          {
+            Counter: $(this).data("count"),
+          },
+          {
+            duration: 2000,
+            easing: "swing",
+            step: function (now) {
+              if ($(this).text() != $(this).data("count"))
+                $(this).text(Math.ceil(now));
+            },
+          }
+        );
+    });
+  } else {
+    if (!$(".statistic").hasClass("aos-animate")) {
+      show = false;
+      $(".statistic-number").each(function () {
+        if ($(this).text() != 0) {
+          $(this).Counter = 0;
+          $(this).text(0);
+        }
+      });
     }
+  }
 });
 
-new Parallax(document.querySelector('.infos-effects'));
+new Parallax(document.querySelector(".infos-effects"));
 //new Parallax(document.querySelector('.infos-inner__images'));
 // new Parallax(document.querySelector('.infos-effects__right'));
 // new Parallax(document.querySelector('.infos-inner__images'));
+
+let count = 3;
+
+function seeMore(count) {
+  const el = $(".projects .projects-swiper__item");
+  el.show();
+  el.each(function () {
+    if ($(this).index() >= count) {
+      $(this).hide();
+    }
+  });
+
+  if (el.length <= count) {
+    $(".btn-projects").hide();
+  }
+  animationInit();
+}
+
+$(".btn-projects").click(function () {
+  count += 3;
+  seeMore(count);
+});
+
+function mobileAnimation() {
+  const width = window.innerWidth;
+  if (width <= 580) {
+    $(".projects").attr("data-aos", "");
+    $(".projects .projects-header")
+      .attr("data-aos", "fade-up")
+      .attr("data-aos-anchor-placement", "center-bottom");
+    $(".projects .projects-swiper__item")
+      .attr("data-aos", "fade-up")
+      .attr("data-aos-anchor-placement", "center-bottom");
+    animationInit();
+
+    seeMore(count);
+  }
+}
+mobileAnimation();
+
+$(window).on("resize", function () {
+  mobileAnimation();
+});
+
+// $(".str3").liMarquee({
+//   direction: "left",
+//   loop: -1,
+//   scrolldelay: 0,
+//   scrollamount: 120,
+//   circular: true,
+//   drag: true,
+// });
+
+$(".clients-inner").imageslider({
+  slideItems: ".swiper-slide",
+  slideContainer: ".clients-list",
+  slideDistance: 1,
+  slideDuratin: 20,
+  resizable: true,
+  pause: true,
+});
 
 // Модальное окно
 $(".modal .modal__container").on("click", function (e) {
@@ -84,111 +323,135 @@ $('.projects-swiper__item-inner').on('click', function (e) {
 
 
 const mySwiper = new Swiper(".home-swiper", {
-    spaceBetween: 30,
-    pagination: {
-        clickable: true,
-        el: '.swiper-pagination',
-        type: 'fraction',
-        renderFraction: function (currentClass, totalClass) {
-            const currentSlide = (this.realIndex + 1).toString().padStart(2, "0");
-            const totalSlides = this.slides.length.toString().padStart(2, "0");
-            return '<span class="swiper-numbers">' +
-                '<span class="swiper-numbers-start">' + currentSlide + '</span>' +
-                '<span class="line"></span>' +
-                '<span class="swiper-numbers-end">' + totalSlides + '</span>' +
-                '</span>' +
-                '<span class="swiper-pagination-bullet"></span>'.repeat(this.slides.length);
-        },
+  spaceBetween: 30,
+  pagination: {
+    clickable: true,
+    el: ".swiper-pagination",
+    type: "fraction",
+    renderFraction: function (currentClass, totalClass) {
+      const currentSlide = (this.realIndex + 1).toString().padStart(2, "0");
+      const totalSlides = this.slides.length.toString().padStart(2, "0");
+      return (
+        '<span class="swiper-numbers">' +
+        '<span class="swiper-numbers-start">' +
+        currentSlide +
+        "</span>" +
+        '<span class="line"></span>' +
+        '<span class="swiper-numbers-end">' +
+        totalSlides +
+        "</span>" +
+        "</span>" +
+        '<span class="swiper-pagination-bullet"></span>'.repeat(
+          this.slides.length
+        )
+      );
     },
+  },
 });
 
-document.querySelector('.home .swiper-pagination-bullet').classList.add('swiper-pagination-bullet-active')
+document
+  .querySelector(".home .swiper-pagination-bullet")
+  .classList.add("swiper-pagination-bullet-active");
 
-mySwiper.on('slideChange', function() {
-    const currentSlideIndex = mySwiper.activeIndex,
-        el = document.querySelectorAll('.home .swiper-pagination-bullet')
-    document.querySelector('.home .swiper-numbers-start').innerHTML = (currentSlideIndex  + 1).toString().padStart(2, "0")
-    el.forEach((item, index) => {
-        if (index === currentSlideIndex) item.classList.add('swiper-pagination-bullet-active')
-        else   item.classList.remove('swiper-pagination-bullet-active')
-    })
+mySwiper.on("slideChange", function () {
+  const currentSlideIndex = mySwiper.activeIndex,
+    el = document.querySelectorAll(".home .swiper-pagination-bullet");
+  document.querySelector(".home .swiper-numbers-start").innerHTML = (
+    currentSlideIndex + 1
+  )
+    .toString()
+    .padStart(2, "0");
+  el.forEach((item, index) => {
+    if (index === currentSlideIndex)
+      item.classList.add("swiper-pagination-bullet-active");
+    else item.classList.remove("swiper-pagination-bullet-active");
+  });
 });
 
 const swiper = new Swiper(".projects-swiper", {
-    spaceBetween: 48,
-    slidesPerView: "auto",
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
+  spaceBetween: 48,
+  slidesPerView: "auto",
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
 });
 
 function swiperCard() {
-    if (window.innerWidth > 560) {
-        $('.projects .projects-swiper').addClass('swiper')
-        $('.projects .projects-swiper .projects-swiper__wrapper').addClass('swiper-wrapper')
-        $('.projects .projects-swiper .projects-swiper__item').addClass('swiper-slide')
-    }else{
-        $('.projects .projects-swiper').removeClass('swiper')
-        $('.projects .projects-swiper .projects-swiper__wrapper').removeClass('swiper-wrapper')
-        $('.projects .projects-swiper .projects-swiper__item').removeClass('swiper-slide')
-    }
+  if (window.innerWidth > 560) {
+    $(".projects .projects-swiper").addClass("swiper");
+    $(".projects .projects-swiper .projects-swiper__wrapper").addClass(
+      "swiper-wrapper"
+    );
+    $(".projects .projects-swiper .projects-swiper__item").addClass(
+      "swiper-slide"
+    );
+  } else {
+    $(".projects .projects-swiper").removeClass("swiper");
+    $(".projects .projects-swiper .projects-swiper__wrapper").removeClass(
+      "swiper-wrapper"
+    );
+    $(".projects .projects-swiper .projects-swiper__item").removeClass(
+      "swiper-slide"
+    );
+  }
 }
 swiperCard();
 window.addEventListener("resize", swiperCard);
-const clientsLoop = document.querySelector('[data-loop]')?.dataset?.loop;
-const swiperClients = new Swiper(".clients-list", {
-    spaceBetween: 0,
-    slidesPerView: "auto",
-    speed: 400,
-    loop:clientsLoop.toLowerCase() === 'true',
-    autoplay: {
-        delay: 1000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true,
-    },
-});
+const clientsLoop = document.querySelector("[data-loop]")?.dataset?.loop;
 
-const galleryTop = new Swiper('.gallery-top', {
+const galleryThumbsList = document.querySelectorAll(".gallery-thumbs");
+for (let i = 0; i < galleryThumbsList.length; i++) {
+  let index = i + 1;
+  const galleryTop = new Swiper(`.gallery-top-${index}`, {
     spaceBetween: 10,
     // loop: true,
     loopedSlides: 4,
     pagination: {
-        el: '.swiper-pagination',
-        type: 'fraction',
-        renderFraction: function () {
-            const currentSlide = (this.realIndex + 1).toString().padStart(2, "0");
-            const totalSlides = this.slides.length.toString().padStart(2, "0");
-            return '<span class="swiper-numbers">' +
-                '<span class="swiper-numbers-start">' + currentSlide + '</span>' +
-                '<span class="line"></span>' +
-                '<span class="swiper-numbers-end">' + totalSlides + '</span>' +
-                '</span>';
-        },
+      el: ".swiper-pagination",
+      type: "fraction",
+      renderFraction: function () {
+        const currentSlide = (this.realIndex + 1).toString().padStart(2, "0");
+        const totalSlides = this.slides.length.toString().padStart(2, "0");
+        return (
+          '<span class="swiper-numbers">' +
+          '<span class="swiper-numbers-start">' +
+          currentSlide +
+          "</span>" +
+          '<span class="line"></span>' +
+          '<span class="swiper-numbers-end">' +
+          totalSlides +
+          "</span>" +
+          "</span>"
+        );
+      },
     },
-});
-
-const galleryThumbs = new Swiper('.gallery-thumbs', {
+  });
+  const galleryThumbs = new Swiper(`.gallery-thumbs-${index}`, {
     spaceBetween: 20,
     centeredSlides: true,
-    slidesPerView: 'auto',
+    slidesPerView: "auto",
     touchRatio: 0.2,
     slideToClickedSlide: false,
-    slideTo:3,
+    slideTo: 3,
     breakpoints: {
-        768: {
-            spaceBetween: 10,
-            slidesPerView: 7,
-            slideToClickedSlide: true,
-        },
-    }
-});
-galleryTop.controller.control = galleryThumbs;
-galleryThumbs.controller.control = galleryTop;
+      768: {
+        spaceBetween: 10,
+        slidesPerView: 7,
+        slideToClickedSlide: true,
+      },
+    },
+  });
+  galleryTop.controller.control = galleryThumbs;
+  galleryThumbs.controller.control = galleryTop;
+  galleryTop.on("slideChange", function () {
+    const currentSlideIndex = galleryTop.activeIndex;
+    document.querySelector(
+      `.gallery-top-${index} .swiper-numbers-start`
+    ).innerHTML = (currentSlideIndex + 1).toString().padStart(2, "0");
+  });
+}
 
-galleryTop.on('slideChange', function() {
-    const currentSlideIndex = galleryTop.activeIndex
-    document.querySelector('.modal-projects__big .swiper-numbers-start').innerHTML = (currentSlideIndex + 1).toString().padStart(2, "0")
-});
+
 
 

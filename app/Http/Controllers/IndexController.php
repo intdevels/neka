@@ -21,4 +21,5 @@ class IndexController extends Controller
 
         return view('index',compact('sliders','about','ratings','projects','partners'));
     }
+
 }

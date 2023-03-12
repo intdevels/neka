@@ -29,7 +29,7 @@ class SliderResource extends Resource
         return $form
             ->schema([
                 Card::make()->schema([
-                    Forms\Components\TextInput::make('title')->maxLength(255),
+                    Forms\Components\TextInput::make('title')->maxLength(255)->helperText('<small>&lt;b&gt; Your Text &lt;/b&gt;</small>'),
                     Forms\Components\Textarea::make('description')->maxLength(255),
                     Forms\Components\Textarea::make('short_description')->maxLength(255),
                     Forms\Components\FileUpload::make('image')->required(),
